@@ -2,6 +2,7 @@ const express = require('express')
 const bodyparser = require('body-parser')
 const _ = require('lodash')
 const mongoose = require('mongoose')
+require('dotenv').config({ path: '.env' });
 
 
 const app = express();
@@ -10,7 +11,7 @@ app.use(bodyparser.urlencoded({ extended: true }))
 app.use(express.static(__dirname + "/public"))
 
 
-mongoose.connect('mongodb+srv://pakhtun_bilal:Ikidgaf6.9@cluster0.vhqvbk9.mongodb.net/todolistDB')
+ mongoose.connect(process.env.MONGO_URI)
 
 const itemsSchema = new mongoose.Schema ( {
     name : String
